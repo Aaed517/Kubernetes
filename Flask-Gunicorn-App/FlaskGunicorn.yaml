@@ -1,76 +1,41 @@
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
   labels:
-
     app: flask-gunicorn-service-v2
-
   name: flask-gunicorn-service-v2
-
 spec:
-
   replicas: 5
-
   selector:
-
     matchLabels:
-
       app: flask-gunicorn-service-v2
-
   template:
-
     metadata:
-
       labels:
-
         app: flask-gunicorn-service-v2
-
     spec:
-
       containers:
-
       - name: flask-gunicorn-service-v2
-        image: dockeronur/flask-app-gunicorn:color
-        
+        image: dockeronur/flask-app-gunicorn:color    
         env:
           - name:  MY_POD_NAME
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
-
         ports:
           - containerPort: 8000
-
-
 ---
-
 apiVersion: v1
-
 kind: Service
-
 metadata:
-
   name: flask-gunicorn-service-v2
-
   labels:
-
     app: flask-gunicorn-service-v2
-
 spec:
-
   ports:
-
   - protocol: TCP
-
     port: 8000
-
     targetPort: 8000
-
   selector:
-
     app: flask-gunicorn-service-v2
-
   type: ClusterIP
