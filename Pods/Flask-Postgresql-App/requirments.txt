@@ -1,0 +1,14 @@
+Flask
+flask_wtf
+WTForms
+itsdangerous
+Jinja2
+MarkupSafe
+pytz
+six
+Werkzeug
+SQLAlchemy
+flask_sqlalchemy
+psycopg2-binary
+psycopg2
+gunicorn

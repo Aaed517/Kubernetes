@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Flask App Adding User</title>
+  </head>
+
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <form action=""  class="col-12"  method="post">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="Surname">Surname</label>
+          <input type="text" class="form-control" id="Surname" name="Surname"  placeholder="Surname">
+        </div>
+        <div class="form-group d-flex justify-content-end" >
+            <button type="submit"  class="btn btn-info">Submit</button>
+        </div>
+      </form>   
+    </div>
+  </div>
+  <table class="table container h-100">
+    <thead>
+      <tr>
+        <th scope="col">#Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+      </tr>
+    </thead>
+    {% for user in users %}
+    <tbody>
+      <tr>
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.name}}</td>
+        <td>{{user.surname}}</td>
+      </tr>
+    </tbody>
+    {% endfor%}
+  </table>

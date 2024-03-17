@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flask-pg-multi-container
+  labels:
+    app: flaskapp
+spec: 
+  containers:
+    - name: flask-app
+      image: dockeronur/flaskapp-pg:latest
+      ports:
+        - containerPort: 8000
+    - name: postgres
+      image:  postgres:latest
+      ports:
+        - containerPort: 5432
+      env:
+        - name: POSTGRES_DB
+          value: dbapp
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: passwd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  flaskapp-service
+spec:
+  selector:
+    app: flaskapp
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+    - port: 5432
+  selector:
+    app: flaskapp
