@@ -1,1 +1,2 @@
-
+kubectl apply -f  Multi-Container-Pods.yaml
+kubectl exec -it flask-pg-multi-container -c flask-app -- python db_create.py
